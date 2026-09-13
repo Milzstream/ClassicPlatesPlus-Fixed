@@ -166,9 +166,15 @@ function func:ResizeNameplates()
     end
 end
 
-hooksecurefunc(NamePlateDriverFrame,"ApplyFrameOptions", function(_, nameplateFrame)
-    func:ResizeNameplates();
-end);
+if NamePlateDriverFrame and NamePlateDriverFrame.ApplyFrameOptions then
+    hooksecurefunc(NamePlateDriverFrame, "ApplyFrameOptions", function(_, nameplateFrame)
+        func:ResizeNameplates();
+    end);
+elseif NamePlateDriverFrame and NamePlateDriverFrame.UpdateNamePlateOptions then
+    hooksecurefunc(NamePlateDriverFrame, "UpdateNamePlateOptions", function()
+        func:ResizeNameplates();
+    end);
+end
 
 ----------------------------------------
 -- Hiding default personal power bars
@@ -1462,7 +1468,7 @@ function func:Update_NameAndGuildPositions(nameplate, hook)
     local CFG = CFG_Account_ClassicPlatesPlus.Profiles[CFG_ClassicPlatesPlus.Profile];
 
     if nameplate then
-        local unit = nameplate.namePlateUnitToken;
+        local unit = nameplate.namePlateUnitToken or nameplate.unitToken;
 
         if unit then
             local unitFrame = nameplate.unitFrame;

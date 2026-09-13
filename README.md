@@ -3,6 +3,19 @@
 # **ClassicPlates Plus**
 ClassicPlates Plus is a nameplates addon that adds additional features and new updated Classic-themed visuals.
 
+## About this fork (Classic Era compatibility)
+
+This fork contains compatibility fixes for **Classic Era 1.15.9+** and is tested on Era Hardcore realms. It targets the Classic Era version of the game.
+
+Fixes included:
+- Uses `C_NamePlate.SetNamePlateSize` on modern clients (era 1.15.9+), falling back to the legacy per-type sizing on older clients.
+- Hooks the nameplate driver's option update (`ApplyFrameOptions` where present, `UpdateNamePlateOptions` on modern clients) so nameplate resizing still fires.
+- Reads the nameplate unit token from the modern `unitToken` field, falling back to the legacy `namePlateUnitToken`.
+- Guards against protected/forbidden nameplate frame calls.
+- Fixes a negative-height typo that prevented debuff/buff icons (and their cooldowns) from rendering.
+
+These are compatibility guards plus a general bug fix, so other Classic flavors using the legacy nameplate engine are unaffected. A PR to the upstream repository is planned so the classic-era fixes benefit everyone.
+
 ## Features
 - Buffs and Debuffs tracking
 - Threat status
@@ -25,7 +38,8 @@ You can support this project with [**one time donation**](https://boosty.to/reub
 
 ## Download
 
-Grab it on [**CurseForge**](https://www.curseforge.com/wow/addons/classicplatesplus).
+- Grab the original on [**CurseForge**](https://www.curseforge.com/wow/addons/classicplatesplus).
+- For the latest Classic Era fixes, grab a build from [**GitHub Releases**](https://github.com/Milzstream/ClassicPlatesPlus-Fixed/releases).
 
 <br />
 
