@@ -1753,11 +1753,9 @@ function func:Create_Profiles(panel, name, cfg, default)
             "COPY_PROFILE_DIALOG",
         };
 
-        for index = 1, STATICPOPUP_NUMDIALOGS do
-            local dialog = _G["StaticPopup" .. index];
-
-            if dialog and dialog:IsShown() and tContains(dialogsToClose, dialog.which) then
-                StaticPopup_Hide(dialog.which);
+        for _, which in ipairs(dialogsToClose) do
+            if StaticPopup_Visible(which) then
+                StaticPopup_Hide(which);
             end
         end
     end
